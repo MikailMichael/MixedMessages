@@ -1,3 +1,4 @@
+let motivation = [];
 // Object holding 3 arrays, message will be generated from one part of each array.
 const message = {
     characters: ['Makunouchi Ippo', 'Rock Lee', 'Subaru Natsuki', 'Vegeta', 'Rengoku', 'Natsu Dragoneel', 'Endeavor', 'Lawliet Ryuzaki', 'Erza Scarlet', 'Levi Ackerman'],
@@ -27,8 +28,6 @@ const message = {
     ]
 };
 
-let motivation = [];
-
 // Generates a random number between 0 and the length of the array
 function generateRandomNumber(num) {
     return Math.floor(Math.random() * num)
@@ -36,19 +35,22 @@ function generateRandomNumber(num) {
 
 // Generates the message
 function generateMessage(){
+    let option;
     // Loops for each property
-    for(i = 0; i < message.length; i++) {
-        // Generates a random option for each property
-        let option = generateRandomNumber(message[i].length);
+    for(let i in message) {     
         // Adds the chosen messages to the final array, changing the context for what property is being displayed
         switch (i) {
-            case 0:
+            case 'characters':
+                // Generates a random option for each property
+                option = generateRandomNumber(message.characters.length);
                 motivation.push(`Your inspirational anime character for the day is: ${message[i][option]}.`);
                 break;
-            case 1:
+            case 'songs':
+                option = generateRandomNumber(message.songs.length);
                 motivation.push(`Your motivational rock song for the day is: ${message[i][option]}.`);
                 break;
-            case 2:
+            case 'quotes':
+                option = generateRandomNumber(message.quotes.length);
                 motivation.push(`Your motivational quote for the day is: ${message[i][option]}.`);
                 break;
             default:
@@ -58,3 +60,12 @@ function generateMessage(){
     }
 }
 
+// Formats message into a readable format, \n for new line
+function formatMessage (msg) {
+    const formattedMsg = msg.join('\n');
+    console.log(formattedMsg);
+}
+
+// Generates message
+generateMessage()
+formatMessage(motivation);
