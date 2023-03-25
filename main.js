@@ -1,11 +1,4 @@
-// console.log("Hello World");
-
-function messageFactory () {
-    return {
-        
-    };
-}
-
+// Object holding 3 arrays, message will be generated from one part of each array.
 const message = {
     characters: ['Makunouchi Ippo', 'Rock Lee', 'Subaru Natsuki', 'Vegeta', 'Rengoku', 'Natsu Dragoneel', 'Endeavor', 'Lawliet Ryuzaki', 'Erza Scarlet', 'Levi Ackerman'],
     songs: [
@@ -33,3 +26,35 @@ const message = {
         "Everything you can imagine is real. - Pablo Picasso"
     ]
 };
+
+let motivation = [];
+
+// Generates a random number between 0 and the length of the array
+function generateRandomNumber(num) {
+    return Math.floor(Math.random() * num)
+  }
+
+// Generates the message
+function generateMessage(){
+    // Loops for each property
+    for(i = 0; i < message.length; i++) {
+        // Generates a random option for each property
+        let option = generateRandomNumber(message[i].length);
+        // Adds the chosen messages to the final array, changing the context for what property is being displayed
+        switch (i) {
+            case 0:
+                motivation.push(`Your inspirational anime character for the day is: ${message[i][option]}.`);
+                break;
+            case 1:
+                motivation.push(`Your motivational rock song for the day is: ${message[i][option]}.`);
+                break;
+            case 2:
+                motivation.push(`Your motivational quote for the day is: ${message[i][option]}.`);
+                break;
+            default:
+                motivation.push('There\'s no more motivation for today!');
+                break;
+        }
+    }
+}
+
